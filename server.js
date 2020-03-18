@@ -1,12 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const mockUserData=[
 	{name:'Mark'},
 	{name:'Jill'}
 ]
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.get('/users', function(req,res){
  	res.json({
@@ -28,7 +28,7 @@ app.get('/users/:id',function(req,res){
 app.post('/login',function(req,res){
  	const username=req.body.username;
  	const password=req.body.password;
- 
+
  	const mockUsername="root";
  	const mockPassword="toor";
  
@@ -41,7 +41,7 @@ app.post('/login',function(req,res){
  	} else {
       	res.json({
       	 	success: false,
-      	 	message: 'password and username do not match'
+      	 	message: 'password and username do not match' +username 
       	})
  	}
 })
